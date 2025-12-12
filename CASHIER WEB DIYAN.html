@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir MAWAA 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 0 0 20px 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .input-section {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #f06292;
+        }
+
+        .input-section h2 {
+            color: #c2185b;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            padding: 12px 15px;
+            border: 2px solid #f48fb1;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ec407a;
+            box-shadow: 0 0 0 3px rgba(236, 64, 122, 0.1);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+            color: white;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(236, 64, 122, 0.4);
+        }
+
+        .btn-delete {
+            background: #e91e63;
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+
+        .btn-delete:hover {
+            background: #c2185b;
+        }
+
+        .items-list {
+            margin-bottom: 30px;
+        }
+
+        .items-list h2 {
+            color: #c2185b;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .item {
+            background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #f8bbd0;
+            transition: all 0.3s;
+        }
+
+        .item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.2);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #c2185b;
+            margin-bottom: 5px;
+        }
+
+        .item-detail {
+            color: #666;
+        }
+
+        .item-price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ec407a;
+            margin-right: 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state div {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .payment-section {
+            background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .total-display {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .payment-input {
+            margin-bottom: 20px;
+        }
+
+        .payment-input label {
+            display: block;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .payment-input input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 3px solid white;
+        }
+
+        .change-display {
+            background: rgba(255,255,255,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .change-amount {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.3em;
+            background: white;
+            color: #ec407a;
+        }
+
+        .btn-checkout:hover {
+            background: #fce4ec;
+        }
+
+        .btn-checkout:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .receipt {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-top: 5px solid #ec407a;
+        }
+
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #f48fb1;
+        }
+
+        .receipt-header h1 {
+            color: #ec407a;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .receipt-date {
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #f48fb1;
+        }
+
+        .receipt-item {
+            margin-bottom: 15px;
+        }
+
+        .receipt-item-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .receipt-item-detail {
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .receipt-total {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 3px solid #ec407a;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .receipt-row.total {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ec407a;
+        }
+
+        .receipt-row.change {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ec407a;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #f48fb1;
+            color: #666;
+        }
+
+        .btn-new {
+            width: 100%;
+            margin-top: 20px;
+            background: #ec407a;
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+        }
+
+        .btn-new:hover {
+            background: #c2185b;
+        }
+
+        .btn-print {
+            width: 100%;
+            margin-top: 10px;
+            background: white;
+            color: #ec407a;
+            border: 2px solid #ec407a;
+            padding: 15px;
+            font-size: 1.1em;
+        }
+
+        .btn-print:hover {
+            background: #fce4ec;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .btn-new, .btn-print {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-price {
+                margin-top: 10px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="mainApp">
+            <div class="header">
+                <h1>💖 KASIR MAWAA 💖</h1>
+                <p>Sistem Kasir Modern & Cantik</p>
+            </div>
+
+            <div class="main-content">
+                <div class="input-section">
+                    <h2>📦 Tambah Item</h2>
+                    <div class="input-group">
+                        <input type="text" id="itemName" placeholder="Nama Barang">
+                        <input type="number" id="itemPrice" placeholder="Harga" min="0">
+                        <input type="number" id="itemQty" placeholder="Jumlah" min="1" value="1">
+                        <button class="btn btn-add" onclick="addItem()">➕ Tambah</button>
+                    </div>
+                </div>
+
+                <div class="items-list">
+                    <h2>🛒 Daftar Belanja</h2>
+                    <div id="itemsList"></div>
+                </div>
+
+                <div class="payment-section">
+                    <div class="total-display">
+                        <div>💰 TOTAL BELANJA</div>
+                        <div id="totalAmount">Rp 0</div>
+                    </div>
+
+                    <div class="payment-input">
+                        <label>💵 Uang Bayar:</label>
+                        <input type="number" id="paymentAmount" placeholder="0" min="0" oninput="calculateChange()">
+                    </div>
+
+                    <div class="change-display" id="changeDisplay" style="display: none;">
+                        <div>💸 KEMBALIAN</div>
+                        <div class="change-amount" id="changeAmount">Rp 0</div>
+                    </div>
+
+                    <button class="btn btn-checkout" onclick="processPayment()" id="btnCheckout" disabled>
+                        Proses Pembayaran
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="receiptView" class="hidden">
+            <div class="receipt">
+                <div class="receipt-header">
+                    <h1>TOKO MAWAAA</h1>
+                    <p>Jl. Hati-hati di jalan</p>
+                    <p>Telp: 0812-3456-7890</p>
+                </div>
+
+                <div class="receipt-date" id="receiptDate"></div>
+
+                <div id="receiptItems"></div>
+
+                <div class="receipt-total">
+                    <div class="receipt-row total">
+                        <span>TOTAL:</span>
+                        <span id="receiptTotal">Rp 0</span>
+                    </div>
+                    <div class="receipt-row">
+                        <span>Bayar:</span>
+                        <span id="receiptPayment">Rp 0</span>
+                    </div>
+                    <div class="receipt-row change">
+                        <span>Kembalian:</span>
+                        <span id="receiptChange">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="receipt-footer">
+                    <p><strong>💖 Terima kasih atas kunjungan Anda! 💖</strong></p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Barang yang sudah dibeli tidak dapat ditukar</p>
+                </div>
+
+                <button class="btn btn-print" onclick="printReceipt()">🖨️ Cetak Struk</button>
+                <button class="btn btn-new" onclick="newTransaction()">🔄 Transaksi Baru</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let items = [];
+        let total = 0;
+
+        function formatRupiah(number) {
+            return 'Rp ' + number.toLocaleString('id-ID');
+        }
+
+        function addItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            const qty = parseInt(document.getElementById('itemQty').value);
+
+            if (!name) {
+                alert('❌ Nama barang tidak boleh kosong!');
+                return;
+            }
+
+            if (!price || price <= 0) {
+                alert('❌ Harga harus lebih dari 0!');
+                return;
+            }
+
+            if (!qty || qty <= 0) {
+                alert('❌ Jumlah harus lebih dari 0!');
+                return;
+            }
+
+            const subtotal = price * qty;
+            const item = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                qty: qty,
+                subtotal: subtotal
+            };
+
+            items.push(item);
+            total += subtotal;
+
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemPrice').value = '';
+            document.getElementById('itemQty').value = '1';
+
+            updateDisplay();
+        }
+
+        function removeItem(id) {
+            const index = items.findIndex(item => item.id === id);
+            if (index > -1) {
+                total -= items[index].subtotal;
+                items.splice(index, 1);
+                updateDisplay();
+            }
+        }
+
+        function updateDisplay() {
+            const itemsList = document.getElementById('itemsList');
+            
+            if (items.length === 0) {
+                itemsList.innerHTML = `
+                    <div class="empty-state">
+                        <div>🛒</div>
+                        <p>Belum ada item</p>
+                    </div>
+                `;
+            } else {
+                itemsList.innerHTML = items.map(item => `
+                    <div class="item">
+                        <div class="item-info">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-detail">${item.qty} x ${formatRupiah(item.price)}</div>
+                        </div>
+                        <div class="item-price">${formatRupiah(item.subtotal)}</div>
+                        <button class="btn btn-delete" onclick="removeItem(${item.id})">🗑️ Hapus</button>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('totalAmount').textContent = formatRupiah(total);
+            calculateChange();
+        }
+
+        function calculateChange() {
+            const payment = parseFloat(document.getElementById('paymentAmount').value) || 0;
+            const change = payment - total;
+            const changeDisplay = document.getElementById('changeDisplay');
+            const btnCheckout = document.getElementById('btnCheckout');
+
+            if (payment > 0) {
+                changeDisplay.style.display = 'block';
+                document.getElementById('changeAmount').textContent = formatRupiah(Math.max(0, change));
+                
+                if (change < 0) {
+                    document.getElementById('changeAmount').style.color = '#ff6b6b';
+                } else {
+                    document.getElementById('changeAmount').style.color = 'white';
+                }
+            } else {
+                changeDisplay.style.display = 'none';
+            }
+
+            btnCheckout.disabled = items.length === 0 || payment < total;
+        }
+
+        function processPayment() {
+            const payment = parseFloat(document.getElementById('paymentAmount').value);
+            const change = payment - total;
+
+            if (items.length === 0 || payment < total) {
+                return;
+            }
+
+            // Tampilkan struk
+            const now = new Date();
+            document.getElementById('receiptDate').textContent = now.toLocaleString('id-ID');
+
+            const receiptItems = document.getElementById('receiptItems');
+            receiptItems.innerHTML = items.map(item => `
+                <div class="receipt-item">
+                    <div class="receipt-item-name">${item.name}</div>
+                    <div class="receipt-item-detail">
+                        <span>${item.qty} x ${formatRupiah(item.price)}</span>
+                        <strong>${formatRupiah(item.subtotal)}</strong>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('receiptTotal').textContent = formatRupiah(total);
+            document.getElementById('receiptPayment').textContent = formatRupiah(payment);
+            document.getElementById('receiptChange').textContent = formatRupiah(change);
+
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('receiptView').classList.remove('hidden');
+        }
+
+        function printReceipt() {
+            window.print();
+        }
+
+        function newTransaction() {
+            items = [];
+            total = 0;
+            document.getElementById('paymentAmount').value = '';
+            document.getElementById('mainApp').classList.remove('hidden');
+            document.getElementById('receiptView').classList.add('hidden');
+            updateDisplay();
+        }
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>
