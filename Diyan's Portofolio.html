@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diyan's Portofolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d2d2d;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #ff69b4, #ffc0cb);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Shapes */
+        .shape {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite;
+            z-index: -1;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        nav a {
+            color: #ff1493;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            display: block;
+            background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        nav a:hover {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 3rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        /* Home Section */
+        #home {
+            background: transparent;
+        }
+
+        #home .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        #home h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+        }
+
+        #home .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+            padding: 0 1rem;
+            color: #ff1493;
+            font-weight: 600;
+        }
+
+        #home .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1.2s;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+        }
+
+        #home .cta-button:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        /* About Section */
+        #about {
+            background: transparent;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 50px rgba(255, 105, 180, 0.5);
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            animation: pulse 3s infinite;
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 15px 50px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 20px 60px rgba(255, 105, 180, 0.7);
+            }
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Projects Section */
+        #projects {
+            background: transparent;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.3), rgba(255, 182, 193, 0.3));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+            background: linear-gradient(135deg, rgba(255, 192, 203, 0.5), rgba(255, 182, 193, 0.5));
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.8);
+            color: #ff1493;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid #ff69b4;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-btn {
+            flex: 1;
+            padding: 0.8rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .project-btn:hover {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: transparent;
+        }
+
+        #contact .container {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+
+        .contact-info p {
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: #ff1493;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            word-break: break-all;
+        }
+
+        .contact-info a:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) rotate(-2deg);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #ff1493;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 3px solid #ff69b4;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hashtags {
+            color: #ff1493;
+            font-weight: 700;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive - Tablet */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            #home h1 {
+                font-size: 3.5rem;
+            }
+
+            #home .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+                font-size: 7rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr 2fr;
+            }
+
+            .about-text {
+                text-align: left;
+            }
+
+            .skills {
+                justify-content: flex-start;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+        }
+
+        /* Responsive - Desktop */
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .profile-img {
+                width: 300px;
+                height: 300px;
+                font-size: 8rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Shapes -->
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <h1>
+                Hello this is Diyan's portfolio! 
+                <span class="sparkle">&#10024;</span>
+            </h1>
+            <p class="subtitle">I want to become an informatics expert to create technology that solves real-world problems and improves people’s lives.</p>
+            <a href="#projects" class="cta-button">Lihat Proyek Saya &#128139;</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me &#128150;</h2>
+            <div class="about-content">
+                <div class="profile-img">
+                    <!-- CARA 1: Ganti 'foto-saya.jpg' dengan nama file foto Anda -->
+                    <img src="1000540140.jpg" alt="Foto Profil">
+                    
+                    <!-- CARA 2: Jika foto belum ada, hapus tag <img> di atas, emoji akan muncul sebagai placeholder -->
+                    <!-- &#128104;&#8203;&#128187; -->
+                </div>
+                <div class="about-text">
+                    <p>Saya, Diyan Kusmawati, 18 tahun, merupakan siswi BAO Skill Up Brain Academy. Saat ini saya sedang fokus mengembangkan kemampuan 
+				di bidang teknologi dan pengembangan digital. Passion saya ada pada pemrograman, artificial intelligence (AI), dan eksplorasi 
+				teknologi kreatif. Website ini adalah bagian dari perjalanan ‘Level Up Your Skill’ saya di Brain Academy Online, di mana saya 
+				mengeksplorasi penerapan AI dalam berbagai bidang serta memperdalam pemahaman saya tentang dunia teknologi modern.</p>
+                    
+                    <p>Saya percaya bahwa setiap website harus tidak hanya terlihat cantik, tetapi juga mudah digunakan dan memberikan nilai tambah bagi penggunanya. Mari berkolaborasi untuk menciptakan sesuatu yang luar biasa!</p>
+
+                    <div class="skills">
+                        <span class="skill-tag">HTML</span>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Diyan's Project &#128640;</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">&#127918;</div>
+                    <<h3>Game Matematika Edukatif</h3>
+                    <p>Aplikasi game interaktif untuk membantu anak-anak belajar matematika dengan cara yang menyenangkan. Dilengkapi dengan sistem level dan skor.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</spaN>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/diyankusmaa/DIYAN-FUTURE-WEB-DEVELOPER.git" target="_blank" class="project-btn">💻 Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">&#128722;</div>
+                    <h3>Cashier Website</h3>
+                    <p>Website cashier ini berguna untuk menghitung total belanja, uang bayar, dan kembalian secara otomatis.”</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                    </div>
+					<div class="project-links">
+                        <a href="https://github.com/diyankusmaa/DIYAN-FUTURE-WEB-DEVELOPER.git" target="_blank" class="project-btn">💻 Code</a>
+                    </div>
+                </div>
+
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Contact &#128140;</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: #ff1493; font-weight: 600;">
+                    Mari berkolaborasi! Saya selalu terbuka untuk proyek baru dan kesempatan menarik.
+                </p>
+                
+                <div class="contact-info">
+                    <p>
+                        <span style="font-size: 1.5rem;">&#128231;</span>
+                        <a href="diyankusma01090.gmail.com">diyankusma01090.gmail.com</a>
+                    </p>
+                    
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/d1yann._?igsh=N3J0cjBlZ2Q3NGw1" target="_blank" class="social-btn">Instagram &#128248;</a>
+                    <a href="https://www.youtube.com/@diyankusmaww" target="_blank" class="social-btn">YouTube &#127916;</a>
+                    <a href="https://github.com/diyankusmaa/DIYAN-FUTURE-WEB-DEVELOPER" target="_blank" class="social-btn">GitHub &#128187;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Portfolio Website. All Rights Reserved.</p>
+        <p class="hashtags">#LevelUpYourSkill #BAOSkillUp #BrainAcademyOnline</p>
+        <p style="margin-top: 1rem; color: #ff69b4; font-size: 0.85rem;">Tag: @ruangguru @brainacademy.id @maretacodes</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to nav links on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
